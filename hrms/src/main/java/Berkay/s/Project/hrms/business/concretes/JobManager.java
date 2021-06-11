@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import Berkay.s.Project.hrms.business.abstracts.JobService;
+import Berkay.s.Project.hrms.core.utilities.results.DataResult;
+import Berkay.s.Project.hrms.core.utilities.results.Result;
+import Berkay.s.Project.hrms.core.utilities.results.SuccessDataResult;
+import Berkay.s.Project.hrms.core.utilities.results.SuccessResult;
 import Berkay.s.Project.hrms.dataAccess.abstracts.JobDao;
 import Berkay.s.Project.hrms.entities.concretes.Job;
 
@@ -20,12 +24,33 @@ public class JobManager implements JobService{
 		this.jobDao = jobDao;
 	}
 
-
+	@Override
+	public DataResult<List<Job>> getAll() {
+		
+		return new SuccessDataResult<List<Job>>(this.jobDao.findAll(),"İşler Listelendi");
+    }
 
 	@Override
-	public List<Job> getAll() {
-		
-		return this.jobDao.findAll();
+	public DataResult<Job> get(int jobId) {
+	
+       var result=this.jobDao.findById(jobId);
+       return new SuccessDataResult<Job>(result.get(),"İş getirildi");
 	}
+
+	@Override
+	public Result add(Job job) {
+		this.jobDao.save(job);
+		return new SuccessResult("İş eklendi");
+	}
+
+	@Override
+	public Result delete(Job job) {
+		this.jobDao.delete(job);
+		return new SuccessResult("İş silindi");
+	}
+
+
+
+	
 
 }

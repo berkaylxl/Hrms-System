@@ -9,31 +9,30 @@ import javax.persistence.Table;
 
 import lombok.Data;
 
-
 @Data
 @Entity
-@Table(name="jobs")
-public class Job {
-	
+@Table(name="users")
+public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
-	private int id;
+	@Column(name="user_id")
+	private int userId;
 	
-	@Column(name="name")
-	private String name;
+	@Column(name="mail")
+	private String mail;
 	
+	@Column(name="password")
+	private String password;
 	
-	public Job() {}
-	
-	public Job(int id, String name) {
+    public User()
+    {
+    	
+    }
+
+	public User(int userId,String mail, String password) {
 		super();
-		this.id = id;
-		this.name = name;
+		this.userId=userId;
+		this.mail = mail;
+		this.password = password;
 	}
-
-
-	
-	
-
 }

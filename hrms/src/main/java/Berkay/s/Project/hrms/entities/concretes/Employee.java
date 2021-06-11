@@ -4,7 +4,6 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -17,7 +16,6 @@ import lombok.Data;
 public class Employee {
    
 	@Id
-	@GeneratedValue
 	@Column(name="user_id")
 	private int userId;
 	
@@ -37,7 +35,6 @@ public class Employee {
 	{
 		
 	}
-
 	public Employee(String firstName, String lastname, String identityNumber, Date birthdayDate) {
 		super();
 		this.firstName = firstName;
